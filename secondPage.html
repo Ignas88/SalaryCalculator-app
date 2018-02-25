@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Salary calculator</title>
-    <link rel="stylesheet" href="Lib/bootstrap.min.css">
-    <link rel="stylesheet" href="CSS/Main.css">
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
+    <link rel="stylesheet" href="css/Main.css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,600,700" rel="stylesheet">
 </head>
 <body>
@@ -21,12 +21,12 @@
 
             <form>
                 <div class="form-group">
-                    <label for="atl">Įveskite atlyginimą "Į rankas":</label>
-                    <input type="text" class="form-control" id="atl" placeholder="Eur"/>
-                    <label class="label-bottom" for="atl2">+ atlyginimas "Į rankas" per autorines sutartis:</label>
-                    <input type="text" class="form-control" id="atl2" placeholder="Eur"/>
+                    <label for="salary">Įveskite atlyginimą "Į rankas":</label>
+                    <input type="text" class="form-control" id="salary" placeholder="Eur"/>
+                    <label class="label-bottom" for="salary2">+ atlyginimas "Į rankas" per autorines sutartis:</label>
+                    <input type="text" class="form-control" id="salary2" placeholder="Eur"/>
 
-                    <button type="button" value="calculate" class="btn btn-default" onclick="calcAntRank()">Skaičiuoti
+                    <button type="button" value="calculate" class="btn btn-default" onclick="Calculator.onHands()">Skaičiuoti
                     </button>
                     <div class="checkbox">
                         <label>
@@ -37,10 +37,10 @@
             </form>
 
             <hr>
-            <h4>Atlyginimas ant popieriaus: <span id="antPopieriaus2"></span> €</h4>
-            <h5>Pajamų mokestis 15%: <span id="pajamuMokest2"></span> €</h5>
-            <h5>Sodra. Sveikatos draudimas 6%: <span id="Draudimas2"></span> €</h5>
-            <h5>Sodra. Pensijų ir soc. draudimas <span id="proc">3</span>%: <span id="Pensija2"></span> €</h5>
+            <h4>Atlyginimas ant popieriaus: <span id="onPaper"></span> €</h4>
+            <h5>Pajamų mokestis 15%: <span id="incomeTax"></span> €</h5>
+            <h5>Sodra. Sveikatos draudimas 6%: <span id="insurance"></span> €</h5>
+            <h5>Sodra. Pensijų ir soc. draudimas <span id="proc">3</span>%: <span id="pension"></span> €</h5>
             <hr>
 
 
@@ -48,6 +48,6 @@
     </div>
 
 
-<script src="JS/Main.js"></script>
+<script src="js/Main.js"></script>
 </body>
 </html>

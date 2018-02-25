@@ -1,60 +1,77 @@
-function calcAntPop() {
+window.Calculator = {
+    //mokesciu skaiciavimas nuo atlyginimo ant popieriaus
+    onPaper: function () {
+        //istraukiame ivesta atlyginima is html failo
+        var onPaper = parseFloat(document.getElementById('salary').value);
 
-    var antPopieriaus = parseFloat(document.getElementById('atl').value);
-    var checkBox1 = document.getElementById("check1");
-    var sodra = antPopieriaus * 0.15;
-    var sDraudimas = antPopieriaus * 0.06;
-    var darbdavioMokesciai = antPopieriaus * 0.3118;
-    var dVietosKaina = antPopieriaus + darbdavioMokesciai;
-    var iRankas = antPopieriaus - (sodra + sDraudimas + pensija);
+        //istraukiame checkbox kintamaji +2proc pridejimui
+        var checkBox1 = document.getElementById("check1");
 
-    if (checkBox1.checked == true){
-        var pensijaProc = 0.05;
-    } else{
-        var pensijaProc = 0.03;
+        //nustatome visus kintamuosius mokesciu apskaiciavimui
+        var incomeTax = onPaper * 0.15;
+        var insurance = onPaper * 0.06;
+        var pensionProc = checkBox1.checked ? 0.05 : 0.03;
+        var pension = onPaper * pensionProc;
+        var employerTax = onPaper * 0.3118;
+        var workplacePrice = onPaper + employerTax;
+        var toHands = onPaper - (incomeTax + insurance + pension);
+
+        //perkeliame kintamuosius i html faila
+        document.getElementById('incomeTax').innerHTML = incomeTax;
+        document.getElementById('insurance').innerHTML = insurance;
+        document.getElementById('pension').innerHTML = pension;
+        document.getElementById('employerTax').innerHTML = employerTax.toFixed(2);
+        document.getElementById('workplacePrice').innerHTML = workplacePrice;
+        document.getElementById('toHands').innerHTML = toHands;
+    },
+
+    //mokesciu skaiciavimas nuo atlyginimo i rankas
+    onHands: function () {
+        //istraukiame ivestus atlyginimus is html failo
+        var onHands = parseFloat(document.getElementById('salary').value);
+        var onHandsCopyright = parseFloat(document.getElementById('salary2').value);
+
+        //istraukiame checkbox kintamaji +2proc pridejimui ir panaudojame su if funkcija
+        var checkBox1 = document.getElementById("check1");
+        //if funkcija procentu pakeitimui skaiciavimuose
+        var pensionProc = checkBox1.checked ? 0.05 : 0.03;
+
+        //jei ivestas autoriniu teisiu atl, mokescius skaiciuojame su juo, kitaip be jo
+        if(onHandsCopyright > 0){
+            var incomeTax = (onHands + onHandsCopyright) * 0.15;
+            var insurance = (onHands + onHandsCopyright) * 0.06;
+            var pension = (onHands + onHandsCopyright) * pensionProc;
+            var onPaper = (onHands + onHandsCopyright) + incomeTax + insurance + pension;
+        }else {
+            var incomeTax = onHands * 0.15;
+            var insurance = onHands * 0.06;
+            var pension = onHands * pensionProc;
+            var onPaper = onHands + incomeTax + insurance + pension;
+        }
+
+        //apskaiciuotus kintamuosius perkeliame i html faila
+        document.getElementById('incomeTax').innerHTML = incomeTax;
+        document.getElementById('insurance').innerHTML = insurance;
+        document.getElementById('pension').innerHTML = pension;
+        document.getElementById('onPaper').innerHTML = onPaper;
+    },
+
+    copyright: function () {
+        //istraukiame ivestus atlyginima ir procentus is html failo
+        var incomeCopyright = parseFloat(document.getElementById('incomeCopyright').value);
+        var copyrightTax = parseFloat(document.getElementById('cTax').value);
+        var startupTax = parseFloat(document.getElementById('startTax').value);
+
+        //nustatome kintamuosius ir ju apskaiciavimus
+        var authorToHands = incomeCopyright - ((incomeCopyright * copyrightTax)/100);
+        var startupPay = incomeCopyright + ((incomeCopyright * startupTax)/100);
+
+        //apskaiciuotus kintamuosius perkeliame i html faila
+        document.getElementById('authorToHands').innerHTML = authorToHands;
+        document.getElementById('startupPay').innerHTML = startupPay;
     }
-
-    var pensija = antPopieriaus * pensijaProc;
-
-    document.getElementById('pajamuMokest').innerHTML = sodra;
-    document.getElementById('Draudimas').innerHTML = sDraudimas;
-    document.getElementById('Pensija').innerHTML = pensija;
-    document.getElementById('DarbdavioMokesciai').innerHTML = darbdavioMokesciai.toFixed(2);
-    document.getElementById('dVietosKaina').innerHTML = dVietosKaina;
-    document.getElementById('iRankas').innerHTML = iRankas;
-}
-
-function calcAntRank() {
-
-    var antRanku = parseFloat(document.getElementById('atl').value);
-    var anRankPerAutorines = parseFloat(document.getElementById('atl2').value);
-    var checkBox1 = document.getElementById("check1");
-
-    if (checkBox1.checked == true){
-        var pensijaProc = 0.05;
-    } else{
-        var pensijaProc = 0.03;
-    }
-
-    if(anRankPerAutorines > 0){
-        var pajamuMokest2 = (antRanku + anRankPerAutorines) * 0.15;
-        var sDraudimas2 = (antRanku + anRankPerAutorines) * 0.06;
-        var pensija2 = (antRanku + anRankPerAutorines) * pensijaProc;
-        var antPopieriaus2 = (antRanku + anRankPerAutorines) + pajamuMokest2 + sDraudimas2 + pensija2;
-    }else {
-        var pajamuMokest2 = antRanku * 0.15;
-        var sDraudimas2 = antRanku * 0.06;
-        var pensija2 = antRanku * pensijaProc;
-        var antPopieriaus2 = antRanku + pajamuMokest2 + sDraudimas2 + pensija2;
-    }
-
-
-    document.getElementById('pajamuMokest2').innerHTML = pajamuMokest2;
-    document.getElementById('Draudimas2').innerHTML = sDraudimas2;
-    document.getElementById('Pensija2').innerHTML = pensija2;
-    document.getElementById('antPopieriaus2').innerHTML = antPopieriaus2;
-}
-
+};
+//checkboxas keiciantis procentus pensiju draudime
 function boxCheck1() {
     // Get the checkbox
     var checkBox1 = document.getElementById("check1");
@@ -68,6 +85,7 @@ function boxCheck1() {
     }
 }
 
+//checkboxas atidarantis ir uzdarantis autoriniu teisiu mokesciu apskaiciavimo langa
 function boxCheck2() {
     // Get the checkbox
     var checkBox2 = document.getElementById("check2");
@@ -82,13 +100,3 @@ function boxCheck2() {
     }
 }
 
-function calcAutorines() {
-    var autorinesPajamos = parseFloat(document.getElementById('pajAutor').value);
-    var autoriniaiMokesciai = parseFloat(document.getElementById('aMokesc').value);
-    var uzsakovoMokesciai = parseFloat(document.getElementById('uzsMokesc').value);
-    var autoriuiRankos = autorinesPajamos - ((autorinesPajamos * autoriniaiMokesciai)/100);
-    var uzsakovasMoka = autorinesPajamos + ((autorinesPajamos * uzsakovoMokesciai)/100);
-
-    document.getElementById('autorRankos').innerHTML = autoriuiRankos;
-    document.getElementById('uzsakMok').innerHTML = uzsakovasMoka;
-}
