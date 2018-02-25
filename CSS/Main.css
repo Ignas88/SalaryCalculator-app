@@ -1,0 +1,29 @@
+body{
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+h2{
+    text-align: center;
+}
+
+.jumbotron{
+    margin: 0 auto;
+    border: solid 1px gainsboro;
+    height: 50%;
+    width: 50%;
+    background-color: white;
+}
+
+.form-control{
+    width: 35%;
+}
+
+.btn{
+    margin-top: 5px;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+}

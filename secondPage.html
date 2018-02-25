@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Salary calculator</title>
+    <link rel="stylesheet" href="Lib/bootstrap.min.css">
+    <link rel="stylesheet" href="CSS/Main.css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,600,700" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h2> Atlyginimo Skaičiuoklė</h2>
+    </header>
+    <div class="container">
+        <div class="jumbotron">
+            <ul class="nav nav-tabs">
+                <li role="presentation"><a href="index.html">Atlyginimas "į rankas"</a></li>
+                <li role="presentation" class="active"><a href="secondPage.html">Atlyginimas ant popieriaus</a></li>
+            </ul>
+            <hr>
+
+            <form>
+                <div class="form-group">
+                    <label for="atl">Įveskite atlyginimą "Į rankas":</label>
+                    <input type="text" class="form-control" name="antRanku" id="atl" placeholder="Eur"/>
+
+                    <button type="button" value="calculate" class="btn btn-default" onclick="calcAntRank()">Skaičiuoti
+                    </button>
+                </div>
+            </form>
+
+            <hr>
+            <h4>Atlyginimas ant popieriaus: <span id="antPopieriaus2"></span> €</h4>
+            <h5>Pajamų mokestis 15%: <span id="pajamuMokest2"></span> €</h5>
+            <h5>Sodra. Sveikatos draudimas 6%: <span id="Draudimas2"></span> €</h5>
+            <h5>Sodra. Pensijų ir soc. draudimas 3%: <span id="Pensija2"></span> €</h5>
+            <hr>
+
+
+        </div>
+    </div>
+
+
+<script src="JS/Main.js"></script>
+</body>
+</html>
