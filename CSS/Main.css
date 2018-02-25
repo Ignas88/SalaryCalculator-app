@@ -12,6 +12,7 @@ h2{
     height: 50%;
     width: 50%;
     background-color: white;
+    min-width: 350px;
 }
 
 .form-control{
@@ -26,4 +27,16 @@ hr {
     border: 0;
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+}
+
+.label-bottom{
+    padding-top: 5px;
+}
+
+.col-padding{
+    padding-left: 0;
+}
+
+#well{
+    display: none;
 }

@@ -22,10 +22,17 @@
             <form>
                 <div class="form-group">
                     <label for="atl">Įveskite atlyginimą "Į rankas":</label>
-                    <input type="text" class="form-control" name="antRanku" id="atl" placeholder="Eur"/>
+                    <input type="text" class="form-control" id="atl" placeholder="Eur"/>
+                    <label class="label-bottom" for="atl2">+ atlyginimas "Į rankas" per autorines sutartis:</label>
+                    <input type="text" class="form-control" id="atl2" placeholder="Eur"/>
 
                     <button type="button" value="calculate" class="btn btn-default" onclick="calcAntRank()">Skaičiuoti
                     </button>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="check1" onclick="boxCheck1()"> Papildomas pensijos kaupimas +2%
+                        </label>
+                    </div>
                 </div>
             </form>
 
@@ -33,7 +40,7 @@
             <h4>Atlyginimas ant popieriaus: <span id="antPopieriaus2"></span> €</h4>
             <h5>Pajamų mokestis 15%: <span id="pajamuMokest2"></span> €</h5>
             <h5>Sodra. Sveikatos draudimas 6%: <span id="Draudimas2"></span> €</h5>
-            <h5>Sodra. Pensijų ir soc. draudimas 3%: <span id="Pensija2"></span> €</h5>
+            <h5>Sodra. Pensijų ir soc. draudimas <span id="proc">3</span>%: <span id="Pensija2"></span> €</h5>
             <hr>
 
 

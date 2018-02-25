@@ -27,6 +27,11 @@
                     <button type="button" value="calculate" class="btn btn-default" onclick="calcAntPop()">
                         Skaičiuoti
                     </button>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="check1" onclick="boxCheck1()"> Papildomas pensijos kaupimas +2%
+                        </label>
+                    </div>
                 </div>
             </form>
 
@@ -34,19 +39,40 @@
             <h4>Atlyginimas į rankas: <span id="iRankas"></span> €</h4>
             <h5>Pajamų mokestis 15%: <span id="pajamuMokest"></span> €</h5>
             <h5>Sodra. Sveikatos draudimas 6%: <span id="Draudimas"></span> €</h5>
-            <h5>Sodra. Pensijų ir soc. draudimas 3%: <span id="Pensija"></span> €</h5>
+            <h5>Sodra. Pensijų ir soc. draudimas <span id="proc">3</span>%: <span id="Pensija"></span> €</h5>
             <h5>Darbdavio mokesčiai sodrai 31.18%: <span id="DarbdavioMokesciai"></span> €</h5>
             <h5>Darbo vietos kaina darbdaviui: <span id="dVietosKaina"></span> €</h5>
             <hr>
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" id="check" onclick="myFunction()"> Pajamos per autorines sutartis
+                        <input type="checkbox" id="check2" onclick="boxCheck2()"> Pajamos per autorines sutartis
                     </label>
                 </div>
             </div>
-
-
+            <div id="well" class="well">
+                <form>
+                    <div class="form-group">
+                        <label for="pajAutor">Įveskite pajamas per autorines sutartis:</label>
+                        <input type="text" class="form-control" name="pajamosAutor" id="pajAutor" placeholder="Eur"/>
+                        <div class="form-row">
+                            <div class="form-group col-md-6 col-padding">
+                                <label class="label-bottom" for="aMokesc">Autoriniai mokesčiai % :</label>
+                                <input type="text" class="form-control" name="autorMokesciai" id="aMokesc" placeholder="%"/>
+                            </div>
+                            <div class="form-group col-md-6 col-padding">
+                                <label class="label-bottom" for="uzsMokesc">Užsakovo mokesčiai % :</label>
+                                <input type="text" class="form-control" name="uzsakovoMokesc" id="uzsMokesc" placeholder="%"/>
+                            </div>
+                        </div>
+                        <button type="button" value="calculate" class="btn btn-default" onclick="calcAutorines()">
+                            Skaičiuoti
+                        </button>
+                    </div>
+                </form>
+                <h5>Į rankas: <span id="autorRankos"></span> €</h5>
+                <h5>Užsakovo mokama suma: <span id="uzsakMok"></span> €</h5>
+            </div>
         </div>
     </div>
 
