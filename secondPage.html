@@ -22,9 +22,9 @@
             <form>
                 <div class="form-group">
                     <label for="salary">Įveskite atlyginimą "Į rankas":</label>
-                    <input type="text" class="form-control" id="salary" placeholder="Eur"/>
+                    <input type="text" class="form-control" id="salary" name="salary" placeholder="Eur"/>
                     <label class="label-bottom" for="salary2">+ atlyginimas "Į rankas" per autorines sutartis:</label>
-                    <input type="text" class="form-control" id="salary2" placeholder="Eur"/>
+                    <input type="text" class="form-control" id="salary2" name="salary2" placeholder="Eur"/>
 
                     <button type="button" value="calculate" class="btn btn-default" onclick="Calculator.onHands()">Skaičiuoti
                     </button>
@@ -47,7 +47,7 @@
         </div>
     </div>
 
-
-<script src="js/main.js"></script>
+    <script src="lib/jquery-3.3.1.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

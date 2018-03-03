@@ -2,11 +2,10 @@ window.Calculator = {
     //mokesciu skaiciavimas nuo atlyginimo ant popieriaus
     onPaper: function () {
         //istraukiame ivesta atlyginima is html failo
-        var onPaper = parseFloat(document.getElementById('salary').value);
+        var onPaper = parseFloat($("#salary").val());
 
-        //istraukiame checkbox kintamaji +2proc pridejimui
-        var checkBox1 = document.getElementById("check1");
-        var pensionProc = checkBox1.checked ? 0.05 : 0.03;
+        //istraukiame checkbox kintamaji +2proc pridejimui su if funkcija procentu pakeitimui skaiciavimuose
+        var pensionProc = $("#check1").prop("checked") ? 0.05 : 0.03;
 
         //nustatome visus kintamuosius mokesciu apskaiciavimui, jei neivestas atl ant popieriaus visos reiksmes = 0
         if (onPaper > 0) {
@@ -26,24 +25,22 @@ window.Calculator = {
         }
 
         //perkeliame kintamuosius i html faila, po kablelio 2 skaiciai
-        document.getElementById('incomeTax').innerHTML = incomeTax.toFixed(2);
-        document.getElementById('insurance').innerHTML = insurance.toFixed(2);
-        document.getElementById('pension').innerHTML = pension.toFixed(2);
-        document.getElementById('employerTax').innerHTML = employerTax.toFixed(2);
-        document.getElementById('workplacePrice').innerHTML = workplacePrice;
-        document.getElementById('toHands').innerHTML = toHands.toFixed(2);
+        $("#incomeTax").html(incomeTax.toFixed(2));
+        $("#insurance").html(insurance.toFixed(2));
+        $("#pension").html(pension.toFixed(2));
+        $("#employerTax").html(employerTax.toFixed(2));
+        $("#workplacePrice").html(workplacePrice.toFixed(2));
+        $("#toHands").html(toHands.toFixed(2));
     },
 
     //mokesciu skaiciavimas nuo atlyginimo i rankas
     onHands: function () {
         //istraukiame ivestus atlyginimus is html failo
-        var onHands = parseFloat(document.getElementById('salary').value);
-        var onHandsCopyright = parseFloat(document.getElementById('salary2').value);
+        var onHands = parseFloat($("#salary").val());
+        var onHandsCopyright = parseFloat($("#salary2").val());
 
         //istraukiame checkbox kintamaji +2proc pridejimui ir panaudojame su if funkcija
-        var checkBox1 = document.getElementById("check1");
-        //if funkcija procentu pakeitimui skaiciavimuose
-        var pensionProc = checkBox1.checked ? 0.05 : 0.03;
+        var pensionProc = $("#check1").prop("checked") ? 0.05 : 0.03;
 
         //jei neivestas kuris nors atl skaiciuojame be jo, jei nieko neivesta visos reiksmes = 0
         if(onHandsCopyright > 0 && onHands > 0){
@@ -69,17 +66,17 @@ window.Calculator = {
         }
 
         //apskaiciuotus kintamuosius perkeliame i html faila, po kablelio 2 skaiciai
-        document.getElementById('incomeTax').innerHTML = incomeTax.toFixed(2);
-        document.getElementById('insurance').innerHTML = insurance.toFixed(2);
-        document.getElementById('pension').innerHTML = pension.toFixed(2);
-        document.getElementById('onPaper').innerHTML = onPaper.toFixed(2);
+        $("#incomeTax").html(incomeTax.toFixed(2));
+        $("#insurance").html(insurance.toFixed(2));
+        $("#pension").html(pension.toFixed(2));
+        $("#onPaper").html(onPaper.toFixed(2));
     },
 
     copyright: function () {
         //istraukiame ivestus atlyginima ir procentus is html failo
-        var incomeCopyright = parseFloat(document.getElementById('incomeCopyright').value);
-        var copyrightTax = parseFloat(document.getElementById('cTax').value);
-        var startupTax = parseFloat(document.getElementById('startTax').value);
+        var incomeCopyright = parseFloat($("#incomeCopyright").val());
+        var copyrightTax = parseFloat($("#cTax").val());
+        var startupTax = parseFloat($("#startTax").val());
 
         //nustatome kintamuosius ir ju apskaiciavimus, jei nevestas atl ir procentai, visos reiksmes = 0
         if(incomeCopyright > 0 && copyrightTax > 0 && startupTax > 0){
@@ -91,36 +88,27 @@ window.Calculator = {
         }
 
         //apskaiciuotus kintamuosius perkeliame i html faila, po kablelio 2 skaiciai
-        document.getElementById('authorToHands').innerHTML = authorToHands.toFixed(2);
-        document.getElementById('startupPay').innerHTML = startupPay.toFixed(2);
+        $("#authorToHands").html(authorToHands.toFixed(2));
+        $("#startupPay").html(startupPay.toFixed(2));
     }
 };
+
 //checkboxas keiciantis procentus pensiju draudime
 function boxCheck1() {
-    // Get the checkbox
-    var checkBox1 = document.getElementById("check1");
-    // Get the span
-    var spanProc = document.getElementById("proc");
-
-    if (checkBox1.checked == true){
-        spanProc.innerText = '5';
+    //jei checkboxas pazymetas textas = 5, kitaip = 3
+    if ($("#check1").prop("checked")){
+        $("#proc").text('5');
     }else{
-        spanProc.innerText = '3';
+        $("#proc").text('3');
     }
 }
 
 //checkboxas atidarantis ir uzdarantis autoriniu teisiu mokesciu apskaiciavimo langa
 function boxCheck2() {
-    // Get the checkbox
-    var checkBox2 = document.getElementById("check2");
-    // Get the output
-    var output = document.getElementById("well");
-
-    // If the checkbox is checked, display the output
-    if (checkBox2.checked == true){
-        output.style.display = "block";
+    if ($("#check2").prop("checked")){
+        $("#well").show();
     } else {
-        output.style.display = "none";
+        $("#well").hide();
     }
 }
 
