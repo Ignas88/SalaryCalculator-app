@@ -16,31 +16,69 @@
             <ul class="nav nav-tabs">
                 <li role="presentation" class="active"><a href="index.html">Atlyginimas "į rankas"</a></li>
                 <li role="presentation"><a href="secondPage.html">Atlyginimas ant popieriaus</a></li>
+                <li id="settingsLi"><a id="settings" class="glyphicon glyphicon-cog" onclick="settingsClick()"></a></li>
             </ul>
-            <hr>
+            <div id="settingsWindow" class="row well settingsWindow">
+                <span>Nustatykite % mokesčių apskaičiavimui:</span>
 
+                    <div class="form-row">
+                        <div class="form-group-sm col-padding">
+                            <label class="label-bottom" for="incomeProc">Pajamų mokestis:</label>
+                            <input type="text" class="form-control formLength" id="incomeProc" placeholder="%"/>
+                        </div>
+                        <div class="form-group-sm col-padding">
+                            <label class="label-bottom" for="insurProc">Sveikatos draudimas:</label>
+                            <input type="text" class="form-control formLength" id="insurProc" placeholder="%"/>
+                        </div>
+                        <div class="form-group-sm col-padding">
+                            <label class="label-bottom" for="pensProc">Pensijų ir soc. draudimas:</label>
+                            <input type="text" class="form-control formLength" id="pensProc" placeholder="%"/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group-sm col-padding">
+                            <label class="label-bottom" for="emplProc">Darbdavio mokesčiai:</label>
+                            <input type="text" class="form-control formLength" id="emplProc" placeholder="%"/>
+                        </div>
+                        <div class="form-group-sm col-padding">
+                            <label class="label-bottom" for="cTax">Autoriniai mokesčiai:</label>
+                            <input type="text" class="form-control formLength" id="cTax" placeholder="%"/>
+                        </div>
+                        <div class="form-group-sm col-padding">
+                            <label class="label-bottom" for="startTax">Užsakovo mokesčiai:</label>
+                            <input type="text" class="form-control formLength" id="startTax" placeholder="%"/>
+                        </div>
+                    </div>
+
+                <button type="button" value="calculate" class="btn btn-default" onclick="Calculator.setProc()">
+                    Nustatyti
+                </button>
+            </div>
+
+            <hr>
             <form>
                 <div class="form-group">
                     <label for="salary">Įveskite atlyginimą ant popieriaus:</label>
                     <input type="text" class="form-control" id="salary" name="salary" placeholder="Eur"/>
-
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="check1" onclick="boxCheck1()"> Papildomas pensijos kaupimas
+                            +2%
+                        </label>
+                    </div>
                     <button type="button" value="calculate" class="btn btn-default" onclick="Calculator.onPaper()">
                         Skaičiuoti
                     </button>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" id="check1" onclick="boxCheck1()"> Papildomas pensijos kaupimas +2%
-                        </label>
-                    </div>
                 </div>
             </form>
 
+
             <hr>
             <h4>Atlyginimas į rankas: <span id="toHands"></span> €</h4>
-            <h5>Pajamų mokestis 15%: <span id="incomeTax"></span> €</h5>
-            <h5>Sodra. Sveikatos draudimas 6%: <span id="insurance"></span> €</h5>
-            <h5>Sodra. Pensijų ir soc. draudimas <span id="proc">3</span>%: <span id="pension"></span> €</h5>
-            <h5>Darbdavio mokesčiai sodrai 31.18%: <span id="employerTax"></span> €</h5>
+            <h5>Pajamų mokestis <span id="incProc">0.00</span>%: <span id="incomeTax"></span> €</h5>
+            <h5>Sodra. Sveikatos draudimas <span id="insProc">0.00</span>%: <span id="insurance"></span> €</h5>
+            <h5>Sodra. Pensijų ir soc. draudimas <span id="penProc">0.00</span>%: <span id="pension"></span> €</h5>
+            <h5>Darbdavio mokesčiai sodrai <span id="empProc">0.00</span>%: <span id="employerTax"></span> €</h5>
             <h5>Darbo vietos kaina darbdaviui: <span id="workplacePrice"></span> €</h5>
             <hr>
             <div class="form-group">
@@ -55,23 +93,14 @@
                     <div class="form-group">
                         <label for="incomeCopyright">Įveskite pajamas per autorines sutartis:</label>
                         <input type="text" class="form-control" id="incomeCopyright" placeholder="Eur"/>
-                        <div class="form-row">
-                            <div class="form-group col-md-6 col-padding">
-                                <label class="label-bottom" for="cTax">Autoriniai mokesčiai % :</label>
-                                <input type="text" class="form-control" id="cTax" placeholder="%"/>
-                            </div>
-                            <div class="form-group col-md-6 col-padding">
-                                <label class="label-bottom" for="startTax">Užsakovo mokesčiai % :</label>
-                                <input type="text" class="form-control" id="startTax" placeholder="%"/>
-                            </div>
-                        </div>
-                        <button type="button" value="calculate" class="btn btn-default" onclick="Calculator.copyright()">
+                        <button type="button" value="calculate" class="btn btn-default"
+                                onclick="Calculator.copyright()">
                             Skaičiuoti
                         </button>
                     </div>
                 </form>
-                <h5>Į rankas: <span id="authorToHands"></span> €</h5>
-                <h5>Užsakovo mokama suma: <span id="startupPay"></span> €</h5>
+                <h5>Į rankas -<span id="copProc">0.00</span>%: <span id="authorToHands"></span> €</h5>
+                <h5>Užsakovo mokama suma +<span id="startProc">0.00</span>%: <span id="startupPay"></span> €</h5>
             </div>
         </div>
     </div>

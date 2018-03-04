@@ -1,20 +1,46 @@
 window.Calculator = {
+    setProc: function () {
+             //istraukiame ivestus procentus, jei nieko neivestas kintamieji = 0
+             var incomeProc =  parseFloat($("#incomeProc").val()) || 0;
+             var insurProc = parseFloat($("#insurProc").val()) || 0;
+             var pensProc = parseFloat($("#pensProc").val()) || 0;
+             var emplProc = parseFloat($("#emplProc").val()) || 0;
+             var copProc = parseFloat($("#cTax").val()) || 0;
+             var startProc = parseFloat($("#startTax").val()) || 0;
+
+             //prekeliame kintamuosius i i kita html elementa
+             $("#incProc").html(incomeProc.toFixed(2));
+             $("#insProc").html(insurProc.toFixed(2));
+             $("#penProc").html(pensProc.toFixed(2));
+             $("#empProc").html(emplProc.toFixed(2));
+             $("#copProc").html(copProc.toFixed(2));
+             $("#startProc").html(startProc.toFixed(2));
+    },
     //mokesciu skaiciavimas nuo atlyginimo ant popieriaus
     onPaper: function () {
+
+        //istraukiame procentus
+        var incomeProc =  parseFloat($("#incomeProc").val()) || 0;
+        var insurProc = parseFloat($("#insurProc").val()) || 0;
+        var pensProc = parseFloat($("#pensProc").val()) || 0;
+        var emplProc = parseFloat($("#emplProc").val()) || 0;
+
         //istraukiame ivesta atlyginima is html failo
         var onPaper = parseFloat($("#salary").val());
 
         //istraukiame checkbox kintamaji +2proc pridejimui su if funkcija procentu pakeitimui skaiciavimuose
-        var pensionProc = $("#check1").prop("checked") ? 0.05 : 0.03;
+        if($("#check1").prop("checked")){
+            pensProc += 2;
+        }
 
         //nustatome visus kintamuosius mokesciu apskaiciavimui, jei neivestas atl ant popieriaus visos reiksmes = 0
         var incomeTax = insurance = pension = employerTax = workplacePrice = toHands = 0;
 
         if (onPaper > 0) {
-             incomeTax = onPaper * 0.15;
-             insurance = onPaper * 0.06;
-             pension = onPaper * pensionProc;
-             employerTax = onPaper * 0.3118;
+             incomeTax = onPaper * (incomeProc/100);
+             insurance = onPaper * (insurProc/100);
+             pension = onPaper * (pensProc/100);
+             employerTax = onPaper * (emplProc/100);
              workplacePrice = onPaper + employerTax;
              toHands = onPaper - (incomeTax + insurance + pension);
         }
@@ -30,30 +56,38 @@ window.Calculator = {
 
     //mokesciu skaiciavimas nuo atlyginimo i rankas
     onHands: function () {
+
+        //istraukiame procentus
+        var incomeProc =  parseFloat($("#incomeProc").val()) || 0;
+        var insurProc = parseFloat($("#insurProc").val()) || 0;
+        var pensProc = parseFloat($("#pensProc").val()) || 0;
+
         //istraukiame ivestus atlyginimus is html failo
         var onHands = parseFloat($("#salary").val());
         var onHandsCopyright = parseFloat($("#salary2").val());
 
         //istraukiame checkbox kintamaji +2proc pridejimui ir panaudojame su if funkcija
-        var pensionProc = $("#check1").prop("checked") ? 0.05 : 0.03;
+        if($("#check1").prop("checked")){
+            pensProc += 2;
+        }
 
         //jei neivestas kuris nors atl skaiciuojame be jo, jei nieko neivesta visos reiksmes = 0
         var incomeTax = insurance = pension = onPaper = 0;
 
         if(onHandsCopyright > 0 && onHands > 0){
-             incomeTax = (onHands + onHandsCopyright) * 0.15;
-             insurance = (onHands + onHandsCopyright) * 0.06;
-             pension = (onHands + onHandsCopyright) * pensionProc;
+             incomeTax = (onHands + onHandsCopyright) * (incomeProc/100);
+             insurance = (onHands + onHandsCopyright) * (insurProc/100);
+             pension = (onHands + onHandsCopyright) * (pensProc/100);
              onPaper = (onHands + onHandsCopyright) + incomeTax + insurance + pension;
         }else if (onHands > 0) {
-             incomeTax = onHands * 0.15;
-             insurance = onHands * 0.06;
-             pension = onHands * pensionProc;
+             incomeTax = onHands * (incomeProc/100);
+             insurance = onHands * (insurProc/100);
+             pension = onHands * (pensProc/100);
              onPaper = onHands + incomeTax + insurance + pension;
         } else if (onHandsCopyright > 0) {
-             incomeTax = onHandsCopyright * 0.15;
-             insurance = onHandsCopyright * 0.06;
-             pension = onHandsCopyright * pensionProc;
+             incomeTax = onHandsCopyright * (incomeProc/100);
+             insurance = onHandsCopyright * (insurProc/100);
+             pension = onHandsCopyright * (pensProc/100);
              onPaper = onHandsCopyright + incomeTax + insurance + pension;
         }
 
@@ -65,10 +99,10 @@ window.Calculator = {
     },
 
     copyright: function () {
-        //istraukiame ivestus atlyginima ir procentus is html failo
+        //istraukiame ivesta atlyginima ir procentus is html failo
         var incomeCopyright = parseFloat($("#incomeCopyright").val());
-        var copyrightTax = parseFloat($("#cTax").val());
-        var startupTax = parseFloat($("#startTax").val());
+        var copyrightTax = parseFloat($("#cTax").val()) || 0;
+        var startupTax = parseFloat($("#startTax").val()) || 0;
 
         //nustatome kintamuosius ir ju apskaiciavimus, jei nevestas atl ir procentai, visos reiksmes = 0
         var authorToHands = startupPay = 0;
@@ -86,11 +120,14 @@ window.Calculator = {
 
 //checkboxas keiciantis procentus pensiju draudime
 function boxCheck1() {
-    //jei checkboxas pazymetas textas = 5, kitaip = 3
+    var pensProc = parseFloat($("#pensProc").val());
+    //jei checkboxas pazymetas textas + 2, kitaip + 0
     if ($("#check1").prop("checked")){
-        $("#proc").text('5');
+        pensProc += 2;
+        $("#penProc").html(pensProc.toFixed(2));
     }else{
-        $("#proc").text('3');
+        pensProc += 0;
+        $("#penProc").html(pensProc.toFixed(2));
     }
 }
 
@@ -100,6 +137,15 @@ function boxCheck2() {
         $("#well").show();
     } else {
         $("#well").hide();
+    }
+}
+
+//paspaudus settings icona atsidaro/uzsidaro nustatymu langas
+function settingsClick() {
+    if ($("#settingsWindow").css("display") == "block") {
+        $("#settingsWindow").hide();
+    } else {
+        $("#settingsWindow").show();
     }
 }
 

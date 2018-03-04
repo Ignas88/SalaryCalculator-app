@@ -30,6 +30,7 @@ hr {
 }
 
 .label-bottom{
+    font-size: 10px;
     padding-top: 5px;
 }
 
@@ -40,3 +41,35 @@ hr {
 #well{
     display: none;
 }
+
+.glyphicon{
+    font-size: 25px;
+}
+
+#settings{
+    padding-bottom: 0;
+    padding-top: 2px;
+}
+
+.settingsWindow{
+    margin: 15px 0 0 0;
+    font-size: 14px;
+    padding: 5px;
+}
+
+#settingsWindow{
+    display: block;
+}
+
+.block{
+    display:block;
+}
+
+.formLength{
+    width: 30%;
+}
+
+.form-row{
+    display: flex;
+}
+

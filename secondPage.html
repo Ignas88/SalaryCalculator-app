@@ -16,7 +16,32 @@
             <ul class="nav nav-tabs">
                 <li role="presentation"><a href="index.html">Atlyginimas "į rankas"</a></li>
                 <li role="presentation" class="active"><a href="secondPage.html">Atlyginimas ant popieriaus</a></li>
+                <li><a id="settings" class="glyphicon glyphicon-cog" onclick="settingsClick()"></a></li>
             </ul>
+            <div id="settingsWindow" class="row well settingsWindow">
+                Nustatykite % mokesčių apskaičiavimui:
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4 col-padding">
+                            <label class="label-bottom" for="incomeProc">Pajamų mokestis:</label>
+                            <input type="text" class="form-control" id="incomeProc" placeholder="%"/>
+                        </div>
+                        <div class="form-group col-md-4 col-padding">
+                            <label class="label-bottom" for="insurProc">Sveikatos draudimas:</label>
+                            <input type="text" class="form-control" id="insurProc" placeholder="%"/>
+                        </div>
+                        <div class="form-group col-md-4 col-padding">
+                            <label class="label-bottom" for="pensProc">Pensijų ir soc. draudimas:</label>
+                            <input type="text" class="form-control" id="pensProc" placeholder="%"/>
+                        </div>
+                    </div>
+
+                <button type="button" value="calculate" class="btn btn-default"
+                        onclick="Calculator.setProc()">
+                    Nustatyti
+                </button>
+            </div>
+
             <hr>
 
             <form>
@@ -25,22 +50,22 @@
                     <input type="text" class="form-control" id="salary" name="salary" placeholder="Eur"/>
                     <label class="label-bottom" for="salary2">+ atlyginimas "Į rankas" per autorines sutartis:</label>
                     <input type="text" class="form-control" id="salary2" name="salary2" placeholder="Eur"/>
-
-                    <button type="button" value="calculate" class="btn btn-default" onclick="Calculator.onHands()">Skaičiuoti
-                    </button>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" id="check1" onclick="boxCheck1()"> Papildomas pensijos kaupimas +2%
+                            <input type="checkbox" id="check1" onclick="boxCheck1()"> Papildomas pensijos kaupimas
+                            +2%
                         </label>
                     </div>
+                    <button type="button" value="calculate" class="btn btn-default" onclick="Calculator.onHands()">Skaičiuoti
+                    </button>
                 </div>
             </form>
 
             <hr>
             <h4>Atlyginimas ant popieriaus: <span id="onPaper"></span> €</h4>
-            <h5>Pajamų mokestis 15%: <span id="incomeTax"></span> €</h5>
-            <h5>Sodra. Sveikatos draudimas 6%: <span id="insurance"></span> €</h5>
-            <h5>Sodra. Pensijų ir soc. draudimas <span id="proc">3</span>%: <span id="pension"></span> €</h5>
+            <h5>Pajamų mokestis <span id="incProc">0.00</span>%: <span id="incomeTax"></span> €</h5>
+            <h5>Sodra. Sveikatos draudimas <span id="insProc">0.00</span>%: <span id="insurance"></span> €</h5>
+            <h5>Sodra. Pensijų ir soc. draudimas <span id="penProc">0.00</span>%: <span id="pension"></span> €</h5>
             <hr>
 
 
