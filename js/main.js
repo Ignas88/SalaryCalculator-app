@@ -15,6 +15,11 @@ window.Calculator = {
              $("#empProc").html(emplProc.toFixed(2));
              $("#copProc").html(copProc.toFixed(2));
              $("#startProc").html(startProc.toFixed(2));
+
+            //     uzdarome settings langa
+            if ($("#settingsWindow").css("display") == "block") {
+                $("#settingsWindow").hide();
+            }
     },
     //mokesciu skaiciavimas nuo atlyginimo ant popieriaus
     onPaper: function () {
@@ -69,7 +74,10 @@ window.Calculator = {
         //istraukiame checkbox kintamaji +2proc pridejimui ir panaudojame su if funkcija
         if($("#check1").prop("checked")){
             pensProc += 2;
+        }else{
+            pensProc = 0;
         }
+
 
         //jei neivestas kuris nors atl skaiciuojame be jo, jei nieko neivesta visos reiksmes = 0
         var incomeTax = insurance = pension = onPaper = 0;
@@ -120,13 +128,13 @@ window.Calculator = {
 
 //checkboxas keiciantis procentus pensiju draudime
 function boxCheck1() {
-    var pensProc = parseFloat($("#pensProc").val());
+    var pensProc = parseFloat($("#pensProc").val()) || 0;
     //jei checkboxas pazymetas textas + 2, kitaip + 0
-    if ($("#check1").prop("checked")){
+    if ($("#check1").prop("checked")) {
         pensProc += 2;
         $("#penProc").html(pensProc.toFixed(2));
-    }else{
-        pensProc += 0;
+    } else{
+        pensProc = 0;
         $("#penProc").html(pensProc.toFixed(2));
     }
 }
